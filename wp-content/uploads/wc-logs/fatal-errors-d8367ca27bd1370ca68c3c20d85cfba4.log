@@ -1,2 +1,42 @@
 2017-12-03T15:17:40+00:00 CRITICAL Maximum execution time of 30 seconds exceeded
 
+2017-12-04T10:44:11+00:00 CRITICAL Uncaught Error: Call to undefined function them_permalink() in C:\xampp\htdocs\hanglinhkien\wp-content\themes\supersale\index.php:81
+Stack trace:
+#0 C:\xampp\htdocs\hanglinhkien\wp-includes\template-loader.php(74): include()
+#1 C:\xampp\htdocs\hanglinhkien\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\hanglinhkien\index.php(17): require('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown
+
+2017-12-04T10:44:21+00:00 CRITICAL Uncaught Error: Call to undefined function them_permarlink() in C:\xampp\htdocs\hanglinhkien\wp-content\themes\supersale\index.php:81
+Stack trace:
+#0 C:\xampp\htdocs\hanglinhkien\wp-includes\template-loader.php(74): include()
+#1 C:\xampp\htdocs\hanglinhkien\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\hanglinhkien\index.php(17): require('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown
+
+2017-12-04T10:44:23+00:00 CRITICAL Uncaught Error: Call to undefined function them_permarlink() in C:\xampp\htdocs\hanglinhkien\wp-content\themes\supersale\index.php:81
+Stack trace:
+#0 C:\xampp\htdocs\hanglinhkien\wp-includes\template-loader.php(74): include()
+#1 C:\xampp\htdocs\hanglinhkien\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\hanglinhkien\index.php(17): require('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown
+
+2017-12-04T10:44:23+00:00 CRITICAL Uncaught Error: Call to undefined function them_permarlink() in C:\xampp\htdocs\hanglinhkien\wp-content\themes\supersale\index.php:81
+Stack trace:
+#0 C:\xampp\htdocs\hanglinhkien\wp-includes\template-loader.php(74): include()
+#1 C:\xampp\htdocs\hanglinhkien\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\hanglinhkien\index.php(17): require('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown
+
+2017-12-04T10:44:24+00:00 CRITICAL Uncaught Error: Call to undefined function them_permarlink() in C:\xampp\htdocs\hanglinhkien\wp-content\themes\supersale\index.php:81
+Stack trace:
+#0 C:\xampp\htdocs\hanglinhkien\wp-includes\template-loader.php(74): include()
+#1 C:\xampp\htdocs\hanglinhkien\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\hanglinhkien\index.php(17): require('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown
+
