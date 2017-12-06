@@ -6,9 +6,7 @@
     <base href="<?php echo bloginfo('template_directory') ?>/"/>
     <link href="css/bootstrap.min.css" rel="stylesheet" type='text/css'>
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet"/>
-    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='fonts/stylesheet.css' rel='stylesheet' type='text/css'>
-
     <link href='css/owl.carousel.css' rel='stylesheet' type='text/css'>
     <link href='css/owl.theme.css' rel='stylesheet' type='text/css'>
     <link href="rs-plugin/css/settings.css" rel="stylesheet" type='text/css'>
@@ -56,8 +54,9 @@
                 <div class="header-content">
                     <h3 class="tz-logo pull-left"><a href="<?php bloginfo('url'); ?>"><img src="images/logo.png" alt="home" /></a></h3>
                     <div class="tz-search pull-right">
-                        <form>
-                            <input type="text" class="tz-query" id="tz-query" value="" placeholder="Tìm kiếm sản phẩm">
+                        <form action="<?php bloginfo('url'); ?>/" method="GET" role="form">
+                            <input type="hidden" name="post_type" value="product">
+                            <input type="text" class="tz-query" name="s" id="tz-query" value="" placeholder="Tìm kiếm sản phẩm">
                             <button type="submit"></button>
                         </form>
                         <div class="live-search">
@@ -161,59 +160,55 @@
                     <ul class="tz-ecommerce-meta pull-right">
                         <li class="tz-mini-cart">
                             <a href="shop-cart.html">                                  
-                                Giỏ hàng : $199.00
+                                Giỏ hàng : <?php echo sprintf (_n( '%d Sản phẩm', '%d Sản phẩm', WC()->cart->cart_contents_count ), WC()->cart->cart_contents_count ); ?> - <?php echo WC()->cart->get_cart_total(); ?>
                             </a>
                             <ul class="cart-inner">
+                                <?php
+                                    global $woocommerce;
+                                    $items = $woocommerce->cart->get_cart();
+                                    $totalcart;
+                                    $haveitems = 0;
+                                    foreach($items as $item => $values) { 
+                                    $_product = apply_filters( 'woocommerce_cart_item_product', $values['data'], $values, $item );
+                                    if ( $_product && $_product->exists() && $values['quantity'] > 0){
+                                    $haveitems = 1;
+                                    $_product = wc_get_product( $values['data']->get_id() );
+                                 
+                                    $linkpro= get_permalink( $values['product_id'] );
+                                    $titlepro= $_product->get_title();
+                                    $getProductDetail = wc_get_product( $values['product_id'] );
+                                    $imgpro = $getProductDetail->get_image(array(80,80));
+                                    $pricepro = get_post_meta($values['product_id'] , '_price', true);
+                                    $quantitypro = $values['quantity'];
+                                 
+                                ?>
                                 <li class="mini-cart-content">
-                                    <div class="mini-cart-img"><img src="images/product/product-cart1.png" alt="product search one"></div>
+                                    <div class="mini-cart-img">
+                                    <?php echo $imgpro ?>
+                                    </div>
                                     <div class="mini-cart-ds">
-                                        <h6><a href="single-product.html">Liv Race Day Short</a></h6>
+                                        <h6><a href="<?php echo $linkpro; ?>"><?php echo $titlepro; ?></a></h6>
                                         <span class="mini-cart-meta">
-                                            <a href="single-product.html">$2650.00</a>
+                                            Giá: <?php echo number_format($pricepro); ?>
                                             <span class="mini-meta">
-                                               <span class="mini-color">Color: <i class="orange"></i></span>
-                                               <span class="mini-qty">Qty: 5</span>
+                                               <span class="mini-color">Số lượng: <?php echo $quantitypro; ?></span>
                                             </span>
                                         </span>
                                     </div>
-                                    <span class="mini-cart-delete"><img src="images/delete.png" alt="delete"></span>
+                                    <a href=""><span class="mini-cart-delete"><img src="images/delete.png" alt="delete"></span></a>
                                 </li>
-                                <li class="mini-cart-content">
-                                    <div class="mini-cart-img"><img src="images/product/product-cart2.png" alt="product search one"></div>
-                                    <div class="mini-cart-ds">
-                                        <h6><a href="single-product.html">City Pedals Sport</a></h6>
-                                        <span class="mini-cart-meta">
-                                            <a href="single-product.html">$2650.00</a>
-                                            <span class="mini-meta">
-                                               <span class="mini-color">Color: <i class="orange"></i></span>
-                                               <span class="mini-qty">Qty: 5</span>
-                                            </span>
-                                        </span>
-                                    </div>
-                                    <span class="mini-cart-delete"><img src="images/delete.png" alt="delete"></span>
-                                </li>
-                                <li class="mini-cart-content">
-                                    <div class="mini-cart-img"><img src="images/product/product-cart2.png" alt="product search one"></div>
-                                    <div class="mini-cart-ds">
-                                        <h6><a href="single-product.html">Gloss</a></h6>
-                                        <span class="mini-cart-meta">
-                                            <a href="single-product.html">$2650.00</a>
-                                            <span class="mini-meta">
-                                               <span class="mini-color">Color: <i class="orange"></i></span>
-                                               <span class="mini-qty">Qty: 5</span>
-                                            </span>
-                                        </span>
-                                    </div>
-                                    <span class="mini-cart-delete"><img src="images/delete.png" alt="delete"></span>
-                                </li>
+                                <?php 
+                                    }
+                                }
+                                ?>
                                 <li class="mini-subtotal">
                                     <span class="subtotal-content">
-                                        Subtotal:
-                                        <strong class="pull-right">$1,100.00</strong>
+                                        Tổng:
+                                        <strong class="pull-right"><?php echo WC()->cart->get_cart_subtotal(); ?></strong>
                                     </span>
                                 </li>
                                 <li class="mini-footer">
-                                    <a href="shop-cart.html" class="view-cart">View Cart</a>
+                                    <a href="<?php echo wc_get_cart_url(); ?>" class="view-cart">View Cart</a>
                                     <a href="shop-checkout.html" class="check-out">Checkout</a>
                                 </li>
                             </ul>
